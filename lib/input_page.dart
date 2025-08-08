@@ -1,10 +1,16 @@
+import 'package:angelabmi/calculator_brain.dart';
 import 'package:flutter/material.dart';
 import 'card_items.dart';
 import 'constants.dart';
+import 'results_page.dart';
+import 'buttom_button.dart';
+import 'round_icon_button.dart';
 
 enum gender { male, female }
 
 int height = 180;
+int weight = 60;
+int age = 12;
 
 class InputPage extends StatefulWidget {
   @override
@@ -109,16 +115,100 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  Expanded(child: myReusableCard(colour: activeCardColour)),
-                  Expanded(child: myReusableCard(colour: activeCardColour)),
+                  Expanded(
+                    child: myReusableCard(
+                      colour: activeCardColour,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("WEIGHT", style: genderTextStyle),
+                          Text(weight.toString(), style: bigTextStyle),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: Icons.add,
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                              ),
+
+                              SizedBox(width: 10.0),
+                              RoundIconButton(
+                                icon: Icons.remove,
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: myReusableCard(
+                      colour: activeCardColour,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("AGE", style: genderTextStyle),
+                          Text(age.toString(), style: bigTextStyle),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: Icons.add,
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              ),
+
+                              SizedBox(width: 10.0),
+                              RoundIconButton(
+                                icon: Icons.remove,
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Container(
-              color: bottomButtonColor,
-              margin: EdgeInsets.all(10.0),
-              width: double.infinity,
-              height: bottomButtonHeight,
+            bottom_button(
+              onTap: () {
+                CalculatorBrain calc = CalculatorBrain(
+                  height: height,
+                  weight: weight,
+                );
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ResultsPage(
+                        bmiResult: calc.calculateBMI(),
+                        resultText: calc.getResult(),
+                        interpretation: calc.resultInterpretation(),
+                      );
+                    },
+                  ),
+                );
+              },
+              buttomText: "CALCULATE",
             ),
           ],
         ),
