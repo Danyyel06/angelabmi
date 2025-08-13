@@ -17,5 +17,5 @@ const resultTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Color(0xFF24D876),
 );
-const BMITextStyle = TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold);
+const BMITextStyle = TextStyle(fontSize: 70.0, fontWeight: FontWeight.bold);
 const bmiBodyTextStyle = TextStyle(fontSize: 22.0);

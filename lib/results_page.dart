@@ -36,8 +36,8 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(bmiResult.toUpperCase(), style: resultTextStyle),
-                  Text(resultText, style: BMITextStyle),
+                  Text(resultText.toUpperCase(), style: resultTextStyle),
+                  Text(bmiResult, style: BMITextStyle),
                   Text(
                     interpretation,
                     style: bmiBodyTextStyle,
